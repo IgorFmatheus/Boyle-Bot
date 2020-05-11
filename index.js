@@ -25,7 +25,7 @@ const prefix = process.env.PREFIX;
 
 client.on('ready', () => {
   console.log(`I'm alive, my name is ${client.user.username}`);
-  client.user.setActivity('Getting Developed', { type: 'Playing' });
+  client.user.setActivity(';help', { type: 'Playing' });
 })
 
 console.log(prefix);
