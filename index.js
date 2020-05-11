@@ -14,11 +14,11 @@ client.aliases = new Collection();
 client.categories = fs.readdirSync('./src/commands/');
 
 ['command'].forEach(handler => {
-  require(`./handler/${handler}`)(client);
+  require(`./src/handler/${handler}`)(client);
 });
 
 config({
-  path: __dirname + '/.env'
+  path: __dirname + '/src/.env'
 });
 
 const prefix = process.env.PREFIX;
