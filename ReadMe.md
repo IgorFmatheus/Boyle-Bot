@@ -7,7 +7,7 @@
 Boyle-BOT
 </h1>
 
-<p align="center">🤖 A Discord Admnistration BOT</p>
+<p align="center">🤖 A Discord Server Manager BOT</p>
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT">
@@ -24,12 +24,12 @@ Boyle-BOT
 ## Features
 This app features all the latest tools and practices in mobile development!
 
-- ⚛️ **Discord js** — A JavaScript library to integrates discord API
+- ⚛️ **Discord js** — A JavaScript library that integrates discord API
 - 💹 **Node Js** — A web framework for Node Js
 
 ## Getting started
 
-Install the Dependences
+Install the Dependencies
 
 > npm install
 
@@ -40,9 +40,9 @@ TOKEN=<bot_token>
 PREFIX=<prefix>
 ```
 
-##Versions
+## Versions
 
-- **1.0.0** Init project with standart commands to manage a server.
+- **1.0.0** Init project with standard commands to manage a server.
 
 <hr>
 
@@ -50,7 +50,7 @@ PREFIX=<prefix>
 
 | Command | Category | Description | Usage |
   ------------ | ------------- | ------------- | -----------
-  Ping | Info | Returns the bot and Api ping
+  Ping | Info | Returns the bot and Api's ping
   Whois  | Info | Returns user info | [ mention / id ]
   Help | Info | Return all commands, or one specific command info | [ command ]
   Kick | Moderation | Kick a member from server | < mention / id > < reason >
@@ -58,8 +58,8 @@ PREFIX=<prefix>
   Sban | Moderation | Ban and unban a member from server | < mention / id > < reason >
   Report | Moderation | Report a member | < mention / id > < reason >
   Clear | Moderation | Clear the chat | [ amount ]
-  Love | Fun | Calculate de love affinity you have for another person. | [ mention ]
-  Meme | Fun | Sends an meme on chat | 
+  Love | Fun | Calculate the love affinity you have for another person. | [ mention ]
+  Meme | Fun | Sends a meme on chat | 
   Roll | Fun | Roll a dice | < d+Number > [ +Number / -Number / *Number / /Number ]
 
 ## Contribution
