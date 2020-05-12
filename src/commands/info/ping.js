@@ -16,7 +16,7 @@ module.exports = {
 
       m.delete();
       message.delete();
-      message.channel.send(embed);
+      message.channel.send(embed).then( m => m.delete(30000));
     });
   }
 }
