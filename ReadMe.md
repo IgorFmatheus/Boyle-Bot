@@ -1,7 +1,7 @@
 
 <h1 align="center">
 <br>
-  <img src="assets/Boyle.jpg" alt="Boyle-Bot" width="250" height="250" style="border-radius: 50%">
+  <img src="assets/Boyle.png" alt="Boyle-Bot" width="250" height="250" style="border-radius: 50%">
 <br>
 <br>
 Boyle-BOT
@@ -35,14 +35,28 @@ Install the Dependencies
 
 Create a dotenv file to setup the Bot
 
+#### TOKEN
+
+You can get your bot token on Discord Developer Portal, following this steps.
+
+- **Create an aplication**
+- **Turn into a bot**
+- **Copy your new token**
+
 ```
 TOKEN=<bot_token>
 PREFIX=<prefix>
 ```
 
+## Starting Bot
+
+Execute the main file with node.
+
+> node index.js
+
 ## Versions
 
-- **1.0.0** Init project with standard commands to manage a server.
+- **1.0.1** Fixed aliases find problems and includes 2 new commands.
 
 <hr>
 
@@ -58,9 +72,11 @@ PREFIX=<prefix>
   Sban | Moderation | Ban and unban a member from server | < mention / id > < reason >
   Report | Moderation | Report a member | < mention / id > < reason >
   Clear | Moderation | Clear the chat | [ amount ]
+  Mute | Moderation | Mute a member temporaly | < mention | time | reason > 
   Love | Fun | Calculate the love affinity you have for another person. | [ mention ]
   Meme | Fun | Sends a meme on chat | 
   Roll | Fun | Roll a dice | < d+Number > [ +Number / -Number / *Number / /Number ]
+  Choose | Fun | Choose an option between the args | < option / option>
 
 ## Contribution
 
@@ -69,4 +85,4 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/licenses/MIT) page for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) page for details.

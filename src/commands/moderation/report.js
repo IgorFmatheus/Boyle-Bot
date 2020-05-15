@@ -11,19 +11,29 @@ module.exports = {
 
     let toReport = message.mentions.members.first() || message.guild.members.get(args[0]);
 
+    //No member to report
+
     if(!toReport)
       return message.reply("Couldn't find that member!").then(m => m.delete(5000));
+
+    //Check if can report this member
     
     if(toReport.hasPermission('BAN_MEMBERS') || toReport.user.bot)
       return message.reply("Can't report that member").then(m => m.delete(5000));
+
+    //No reason
 
     if(!args[1])
       return message.channel.send("Please provide a reason for the report!").then(m => m.delete(5000));
 
     const channel = message.guild.channels.find(channel => channel.name === 'reports');
 
+    //No channel
+
     if(!channel)
       return message.channel.send("I could not find a \`#reports\` channel").then(m => m.delete(5000));
+
+    //Embed setup
 
     const embed = new RichEmbed()
       .setColor('#FF0000')

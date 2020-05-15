@@ -6,21 +6,27 @@ module.exports = {
   execute: (client, message, args) => {
     if(message.deleteble) message.delete();
 
+    //No author permissions
+
     if(!message.member.hasPermission('MANAGE_MESSAGES')) {
       return message.reply("You can't delete messages....")
         .then(m => m.delete(5000))
     }
 
+    //Check if is a number
+
     if(isNaN(args[0]) || parseInt(args[0]) <= 0) {
       return message.reply("Yeah.... That's not a number? I also can't delete 0 messages by the way.").then(m => m.delete(5000));
     }
+
+    //Check if bot has permission
 
     if(!message.guild.me.hasPermission('MANAGE_MESSAGES')) {
       return message.message.reply('Sorry.... I can not delete messages.').then(m => m.delete(5000));
     }
 
     let deleteAmount;
-
+    
     if(parseInt(args[0] > 100)){
       deleteAmount = 100;
     }else{
