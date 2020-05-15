@@ -1,7 +1,7 @@
 
 <h1 align="center">
 <br>
-  <img src="assets/Boyle.jpg" alt="Boyle-Bot" width="250" height="250" style="border-radius: 50%">
+  <img src="assets/Boyle.png" alt="Boyle-Bot" width="250" height="250" style="border-radius: 50%">
 <br>
 <br>
 Boyle-BOT
