@@ -56,7 +56,7 @@ Execute the main file with node.
 
 ## Versions
 
-- **1.0.0** Init project with standard commands to manage a server.
+- **1.0.1** Fixed aliases find problems and includes 2 new commands.
 
 <hr>
 
@@ -72,9 +72,11 @@ Execute the main file with node.
   Sban | Moderation | Ban and unban a member from server | < mention / id > < reason >
   Report | Moderation | Report a member | < mention / id > < reason >
   Clear | Moderation | Clear the chat | [ amount ]
+  Mute | Moderation | Mute a member temporaly | < mention | time | reason > 
   Love | Fun | Calculate the love affinity you have for another person. | [ mention ]
   Meme | Fun | Sends a meme on chat | 
   Roll | Fun | Roll a dice | < d+Number > [ +Number / -Number / *Number / /Number ]
+  Choose | Fun | Choose an option between the args | < option / option>
 
 ## Contribution
 
