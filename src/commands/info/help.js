@@ -58,7 +58,7 @@ function getCMD (client, message, input) {
   if(cmd.aliases) info += `\n**Aliases: **${cmd.aliases.map(a => `\`${a}\``).join(', ')}`;
   if(cmd.description) info += `\n**Description: **${cmd.description}`;
   if(cmd.usage){
-    indo += `\n**Usage: **${cmd.usage}`;
+    info += `\n**Usage: **${cmd.usage}`;
     embed.setFooter(`Syntaax: <> = required, [] = optional`);
   }
 
