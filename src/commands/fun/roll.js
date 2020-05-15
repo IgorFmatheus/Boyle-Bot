@@ -12,10 +12,14 @@ module.exports = {
 
     if (message.deletable) message.delete();
     
+    //No dice
+
     if(!rolled){
       return message.reply('I need something to roll! \n choose a dice')
         .then( m => m.delete({ timeout: 5000 }));
     }
+
+    //Check if is a valid dice
 
     if(!rolled.startsWith('d')){
       return message.reply('You have to start the dice with "d".')
@@ -25,9 +29,16 @@ module.exports = {
     rolled = rolled.slice(1);
 
     if(!isNaN(rolled))
+
+      //Non operation
+
       rolled = Math.floor(Math.random() * parseInt(rolled)) + 1;
     else{
+      //Get operation
+
       rolled = await getOperation(message, rolled , ['+', '-', '*', '/']);
+
+      //No operation found
 
       if(!rolled){
         return message.reply('Something gone wrong, try again')
