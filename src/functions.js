@@ -37,6 +37,15 @@ module.exports = {
       .emoji.name );
   },
 
+  promptAnswer: async function (message, author, time, acceptableAnswers){
+    time *= 1000;
+
+    const filter = (answer) => acceptableAnswers.includes(answer.content) && answer.member.id === author.id;
+
+    return message.channel.awaitMessages(filter, {max: 1, time: time})
+      .then(msg => msg.first() && msg.first().content);
+  },
+
   getOperation: async function (message, arg, operators) {
     for(const operator of operators){
       if(arg.includes(operator)){
