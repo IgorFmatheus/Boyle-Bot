@@ -6,21 +6,18 @@ let roles = [];
 let target;
 
 module.exports = {
-  name: 'addrole',
+  name: 'delrole',
   aliases: ['role'],
   category: 'moderation',
   usage: '[ mention ]',
   execute: async (client, message, args) => {
-    let usableRoles = [];
+    let target;
     let roleList = '';
     let roleIndex = 1;
     let acceptableAnswers = [];
-    let target;
-
-    const logChannel = message.guild.channels.find(c => c.name === 'logs' ||c.name === 'log') || message.channel;
 
     if(!message.member.hasPermission('MANAGE_ROLES'))
-      return message.reply(`You don't have permission to use this command, contact a staff member`).then(m => m.delete(5000));
+      return message.reply(`You don't have permission to use this command, contact a staff member.`)
 
     if(!args[0])
       target = await getMember(message);
@@ -30,16 +27,19 @@ module.exports = {
     if(!target)
       return message.reply('Member not found, try again').then(m => m.delete(5000));
 
-    usableRoles = await getRoles(message);
-    usableRoles = usableRoles.filter(role => !role.name.startsWith('#'));
+    const usableRoles = await getRoles(message, target);
+
+    if(!usableRoles)
+      return message.reply(`Something gone wrong, try again`).then(m => m.delete(5000));
 
     for(let role of usableRoles){
       role.index = roleIndex;
       acceptableAnswers.push(`${roleIndex}`);
       roleIndex++;
-
+  
       roleList += `\n ${role.index} - ${role.name} (<@&${role.id}>).`;
     }
+
     acceptableAnswers.push('0','c');
     roleList += `\n 0 or c to cancel`;
 
@@ -59,15 +59,15 @@ module.exports = {
       for(const role of usableRoles){
 
         if(answer === `${role.index}`){
-          target.addRole(role.id).catch(console.error);
+          target.removeRole(role.id).catch(console.error);
 
           const promptEmbed = new RichEmbed()
             .setColor('GREEN')
             .setFooter(message.member.displayName, message.author.displayAvatarURL)
-            .setDescription(stripIndents`✅ Role ${role.name} added to ${target.displayName}`)
+            .setDescription(stripIndents`✅ Role ${role.name} removed from ${target.displayName}`)
             .setThumbnail(target.user.displayAvatarURL);
 
-          return message.reply(`✅ Role added to ${target.displayName}`).then( msg =>{
+          return message.reply(`✅ Role Removed from ${target.displayName}`).then( msg =>{
             msg.delete(5000);
             logChannel.send(promptEmbed);
           });
@@ -77,6 +77,5 @@ module.exports = {
       message.reply('❌ Command canceled').then(msg => msg.delete(5000));
 
     });
-
   }
 }

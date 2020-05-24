@@ -66,5 +66,22 @@ module.exports = {
         return arg;
       }
     }
+  },
+
+  getRoles: async (message, target) => {
+    let roles = [];
+    
+    if(!target)
+      message.guild.roles.forEach( role => { roles.push({ name: role.name , id: role.id}) });
+    else
+      target.roles.forEach( role => { roles.push({ name: role.name, id: role.id}) });
+
+    if(!roles || roles.length === 1)
+        return message.reply('No role found, try again').then(m => m.delete(5000));
+  
+    let availableRoles = roles.filter(role => role !== undefined && role.name !== '@everyone' && !role.name.includes('Bot') && !role.name.includes('BOT'));
+
+    return availableRoles;
   }
+
 }
