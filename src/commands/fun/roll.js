@@ -6,6 +6,7 @@ module.exports = {
   name: 'roll',
   aliases: ['d'],
   category: 'fun',
+  usage: '([ Multiplier ]+ < dice > + [ Operation ])',
   description: 'Roll a dice.',
   execute: async (client, message, args) => {
     let rolled = args[0];
@@ -14,13 +15,20 @@ module.exports = {
     
     if(!rolled){
       return message.reply('I need something to roll! \n choose a dice')
-        .then( m => m.delete({ timeout: 5000 }));
+        .then( m => m.delete(5000));
+    }
+
+    if(!rolled.includes('d')){
+      return message.reply('You have to use "d" to choose the dice. \n example: 2d20+3 , d20+3, d20').then(m => m.delete(5000));
     }
 
     if(!rolled.startsWith('d')){
-      return message.reply('You have to start the dice with "d".')
-        .then(m => m.delete({ timeout: 5000 }));
+      const multiplier = rolled.slice(0,rolled.indexOf('d'));
+
+      rolled = rolled.slice(rolled.indexOf('d'));
+      console.log(`multiplier: ${multiplier} \n rolled: ${rolled}`);
     }
+
 
     rolled = rolled.slice(1);
 
