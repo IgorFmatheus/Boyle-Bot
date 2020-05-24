@@ -9,6 +9,7 @@ module.exports = {
   usage: '([ Multiplier ]+ < dice > + [ Operation ])',
   description: 'Roll a dice.',
   execute: async (client, message, args) => {
+    let multiplier = 1;
     let rolled = args[0];
 
     if (message.deletable) message.delete();
@@ -23,19 +24,24 @@ module.exports = {
     }
 
     if(!rolled.startsWith('d')){
-      const multiplier = rolled.slice(0,rolled.indexOf('d'));
+      multiplier = rolled.slice(0,rolled.indexOf('d'));
 
       rolled = rolled.slice(rolled.indexOf('d'));
       console.log(`multiplier: ${multiplier} \n rolled: ${rolled}`);
     }
-
-
+    
     rolled = rolled.slice(1);
 
+    let result = '';
+
     if(!isNaN(rolled))
-      rolled = Math.floor(Math.random() * parseInt(rolled)) + 1;
+      for(let i = 0; i<parseInt(multiplier); i++){
+        result += `\n${Math.floor(Math.random() * parseInt(rolled)) + 1}`;
+        console.log(`Loop: ${i} \n result: ${result}`);
+      }
+
     else{
-      rolled = await getOperation(message, rolled , ['+', '-', '*', '/']);
+      result += await getOperation(message, rolled , ['+', '-', '*', '/'], multiplier);
 
       if(!rolled){
         return message.reply('Something gone wrong, try again')
@@ -45,8 +51,7 @@ module.exports = {
 
     const embed = new RichEmbed()
       .setColor('RANDOM')
-      .setDescription(stripIndents`**Rolled: **${args[0]}
-      **Result: **${rolled}`)
+      .setDescription(stripIndents`**Rolled: **${args[0]} ${result}`)
       .setFooter(message.member.displayName, message.author.displayAvatarURL)
       .setTimestamp();
 

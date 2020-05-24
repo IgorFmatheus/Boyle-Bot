@@ -46,7 +46,9 @@ module.exports = {
       .then(msg => msg.first() && msg.first().content);
   },
 
-  getOperation: async function (message, arg, operators) {
+  getOperation: async function (message, arg, operators, multiplier = 1) {
+    let result = '';
+
     for(const operator of operators){
       if(arg.includes(operator)){
         const value = parseInt(arg.slice(arg.indexOf(operator) + 1));
@@ -56,14 +58,18 @@ module.exports = {
           message.reply('Something gone wrong, try again.')
             .then( m => m.delete({ timeout: 5000 }));
         }
-        arg = Math.floor(Math.random() * parseInt(arg)) + 1;
+        for(let i = 0; i<parseInt(multiplier); i++){
+          let count = Math.floor(Math.random() * parseInt(arg)) + 1;
 
-        if(operator === '+') arg = parseInt(arg) + value;
-        if(operator === '-') arg = parseInt(arg) - value;
-        if(operator === '*') arg = parseInt(arg) * value;
-        if(operator === '/') arg = parseInt(arg) / value;
-      
-        return arg;
+          if(operator === '+') count = parseInt(count) + value;
+          if(operator === '-') count = parseInt(count) - value;
+          if(operator === '*') count = parseInt(count) * value;
+          if(operator === '/') count = parseInt(count) / value;
+
+          result += `\n ${count}`
+        }
+          result += `\n Operation: ${operator}${value}`;
+        return result;
       }
     }
   },
